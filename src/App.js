@@ -1,21 +1,16 @@
 import React from 'react';
-import Header from './components/Header'
-import Banner from './components/Banner';
-import Service from './components/Service';
-import About from './components/About';
-import Passion from './components/Passion';
-import IntroVideoBg from './components/IntroVideoBg';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import WebApp from './web/App';
+import AdminApp from './admin/App';
 
 function App() {
   return (
-    <React.Fragment>
-      <Header/>
-      <Banner/>
-      <Service/>
-      <About/>
-      <Passion/>
-      <IntroVideoBg/>
-    </React.Fragment>            
+    <Router>
+      <Switch>
+        <Route path="/admin" component={AdminApp} />
+        <Route path="/" component={WebApp} />      
+      </Switch>      
+    </Router>    
   );
 }
 
