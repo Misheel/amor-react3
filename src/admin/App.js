@@ -11,7 +11,7 @@ function AdminApp() {
             <div style={{height: '6rem'}}/>
             <Switch>
                 <Route path="/admin/menuCategory" exact component={MenuCategory} />
-                <Route path="/admin/menu" exact component={Menu} />
+                <Route path="/admin/menu/:categoryId" exact component={Menu} />
             </Switch>
         </>
     );

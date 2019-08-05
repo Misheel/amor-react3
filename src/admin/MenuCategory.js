@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 
 function MenuCategory() {
 
@@ -97,7 +98,7 @@ function MenuCategory() {
                                 {
                                     list.map(item => (
                                         <tr key={item.id}>
-                                            <td>{item.name}</td>
+                                            <td><Link to={`/admin/menu/${item.id}`}>{item.name}</Link></td>
                                             <td style={{ width: 1, whiteSpace: 'nowrap' }}>
                                                 <button className="btn btn-outline-secondary" onClick={() => editCategory(item.id, item.name)}>Засах</button>
                                                 {' '}
