@@ -1,14 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+import MenuForm from './MenuForm';
 
-function Menu({match}) {    
+function Menu({ match }) {
 
     const categoryId = match.params.categoryId;
 
     const [list, setList] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [formOpen, setFormOpen] = useState(false);
 
-    function loadMenus() {        
-        fetch('/api/menu/listByCategoryId?id='+categoryId)
+    function loadMenus() {
+        fetch('/api/menu/listByCategoryId?id=' + categoryId)
             .then(function (response) {
                 return response.json();
             })
@@ -18,15 +20,27 @@ function Menu({match}) {
             });
     }
 
-    useEffect(() => {        
+    useEffect(() => {
         setLoading(true);
         loadMenus();
     }, []);
 
+    function handleClose() {
+        setFormOpen(false);
+    }
+
+    function handleSave() {
+        setFormOpen(false);
+        loadMenus();
+    }
+
     return (
         <React.Fragment>
             <div className="container">
-                <h1>Цэс</h1>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1em' }}>
+                    <h1>Цэс</h1>
+                    <button type="button" className="btn btn-primary" onClick={() => setFormOpen(true)}>Шинэ</button>
+                </div>
 
                 {
                     list.length === 0
@@ -38,14 +52,17 @@ function Menu({match}) {
                                 {
                                     list.map(item => (
                                         <tr key={item.id}>
-                                            <td>{item.name}</td>                                            
+                                            <td>{item.name}</td>
                                         </tr>
                                     ))
                                 }
                             </tbody>
                         </table>
                 }
-            </div>            
+            </div>
+
+            <MenuForm open={formOpen} onClose={handleClose} categoryId={categoryId} onSave={handleSave}/>
+                            
         </React.Fragment>
     );
 }
