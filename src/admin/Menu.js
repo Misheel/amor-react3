@@ -83,6 +83,49 @@ function Menu({ match }) {
         }
     }
 
+    function moveUp(index) {
+        if (index>0){
+            const targetIndex = index - 1;
+            let newList = [...list];
+            const temp = newList[index];
+            newList[index] = newList[targetIndex];
+            newList[targetIndex] = temp;
+            setList(newList);
+
+            let params = newList.map((item, index) => `${item.id}=${index}`);
+                        
+            fetch('/api/menu/sort?' + params.join('&'), {
+                method: 'POST'
+            }).then(function (response) {
+                if (response.ok) {
+                    loadMenus();
+                }
+            })
+        }        
+    }
+
+    function moveDown(index) {
+        if (index<list.length-1){
+            const targetIndex = index + 1;
+            let newList = [...list];
+            const temp = newList[index];
+            newList[index] = newList[targetIndex];
+            newList[targetIndex] = temp;
+            setList(newList);
+
+            let params = newList.map((item, index) => `${item.id}=${index}`);
+                        
+            fetch('/api/menu/sort?' + params.join('&'), {
+                method: 'POST'
+            }).then(function (response) {
+                if (response.ok) {
+                    loadMenus();
+                }
+            })
+        }        
+    }
+
+
     return (
         <React.Fragment>
             <div className="container" style={{ maxWidth: 700 }}>
@@ -109,9 +152,9 @@ function Menu({ match }) {
                         <table className="table table-bordered">
                             <tbody>
                                 {
-                                    list.map(item => (
+                                    list.map((item, index) => (
                                         <tr key={item.id}>
-                                            <td>
+                                            <td>                                                
                                                 {
                                                     item.hasChildren
                                                         ?
@@ -124,6 +167,10 @@ function Menu({ match }) {
                                                 <button className="btn btn-outline-secondary" onClick={() => editMenu(item.id)}>Засах</button>
                                                 {' '}
                                                 <button className="btn btn-outline-danger" onClick={() => deleteMenu(item.id)} >Устгах</button>
+                                                {' '}
+                                                <button className="btn btn-outline-secondary"  disabled={index===0} onClick={() => moveUp(index)} >↑</button>
+                                                {' '}
+                                                <button className="btn btn-outline-secondary" disabled={index===list.length-1} onClick={() => moveDown(index)} >↓</button>
                                             </td>
                                         </tr>
                                     ))
