@@ -7,11 +7,8 @@ function Navbar() {
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <Link class="nav-link" to="/admin/menuCategory">Цэсний ангилал <span class="sr-only">(current)</span></Link>
-                    </li>
-                    <li class="nav-item">
-                        <Link class="nav-link" to="/admin/menu">Цэс</Link>
-                    </li>
+                        <Link class="nav-link" to="/admin/menuCategory">Цэс <span class="sr-only">(current)</span></Link>
+                    </li>                    
                     <li class="nav-item">
                         <Link class="nav-link" to="/admin/blog">Блог</Link>
                     </li>

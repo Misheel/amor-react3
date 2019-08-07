@@ -12,6 +12,7 @@ function AdminApp() {
             <Switch>
                 <Route path="/admin/menuCategory" exact component={MenuCategory} />
                 <Route path="/admin/menu/:categoryId" exact component={Menu} />
+                <Route path="/admin/menu/:categoryId/:parentId" exact component={Menu} />
             </Switch>
         </>
     );

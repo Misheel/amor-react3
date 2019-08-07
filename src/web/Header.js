@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Submenu from "./Submenu";
 
 function Header() {
     const [menus, setMenus] = useState([]);
@@ -31,11 +32,21 @@ function Header() {
                                 <ul class="navbar-nav align-items-center">
                                     {
                                         menus.map(a => (
-                                            <li class="nav-item">
-                                                <a class="nav-link" href={a.link} target={a.target}>{a.name}</a>
-                                            </li>
+                                            <React.Fragment key={a.id}>
+                                                {
+                                                    a.hasChildren
+                                                        ?
+                                                        <Submenu parent={a}/>
+                                                        :
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href={a.link} target={a.target}>{a.name}</a>
+                                                        </li>
+                                                }
+                                            </React.Fragment>
+
                                         ))
-                                    }                                    
+                                    }
+
                                     <li class="d-none d-lg-block">
                                         <a class="btn_2" href="#">learn more</a>
                                     </li>

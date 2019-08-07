@@ -84,7 +84,7 @@ function MenuCategory() {
         <React.Fragment>
             <div className="container" style={{ maxWidth: 600 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1em' }}>
-                    <h1>Цэсний ангилал</h1>
+                    <h1>Цэс</h1>
                     <button type="button" className="btn btn-primary" onClick={addNew}>Шинэ</button>
                 </div>
 
