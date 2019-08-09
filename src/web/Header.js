@@ -15,21 +15,21 @@ function Header() {
     }, []);
 
     return (
-        <header class="main_menu home_menu">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-12">
-                        <nav class="navbar navbar-expand-lg navbar-light">
-                            <a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo" /> </a>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+        <header className="main_menu home_menu">
+            <div className="container">
+                <div className="row align-items-center">
+                    <div className="col-lg-12">
+                        <nav className="navbar navbar-expand-lg navbar-light">
+                            <a className="navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo" /> </a>
+                            <button className="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                 aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="ti-menu"></span>
+                                <span className="ti-menu"></span>
                             </button>
 
-                            <div class="collapse navbar-collapse main-menu-item justify-content-end"
+                            <div className="collapse navbar-collapse main-menu-item justify-content-end"
                                 id="navbarSupportedContent">
-                                <ul class="navbar-nav align-items-center">
+                                <ul className="navbar-nav align-items-center">
                                     {
                                         menus.map(a => (
                                             <React.Fragment key={a.id}>
@@ -38,8 +38,8 @@ function Header() {
                                                         ?
                                                         <Submenu parent={a}/>
                                                         :
-                                                        <li class="nav-item">
-                                                            <a class="nav-link" href={a.link} target={a.target}>{a.name}</a>
+                                                        <li className="nav-item">
+                                                            <a className="nav-link" href={a.link} target={a.target}>{a.name}</a>
                                                         </li>
                                                 }
                                             </React.Fragment>
@@ -47,8 +47,8 @@ function Header() {
                                         ))
                                     }
 
-                                    <li class="d-none d-lg-block">
-                                        <a class="btn_2" href="#">learn more</a>
+                                    <li className="d-none d-lg-block">
+                                        <a className="btn_2" href="#">learn more</a>
                                     </li>
                                 </ul>
                             </div>

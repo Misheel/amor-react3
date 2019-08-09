@@ -1,38 +1,73 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Banner() {
-  return (
-    <section class="banner_part">
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-lg-7">
-                    <div class="banner_text text-center">
-                        <div class="banner_text_iner">
-                            <h1>Help The <br/>
-                                Children in Need </h1>
-                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut</p>
-                            <a href="#" class="btn_2">Start Donation</a>
+
+    const [name, setName] = useState('');
+    const [desc, setDesc] = useState('');
+    const [link, setLink] = useState('');
+    const [linkName, setLinkName] = useState('');
+    const [video, setVideo] = useState('');
+
+    function YouTubeGetID(url) {
+        var ID = '';
+        url = url.replace(/(>|<)/gi, '').split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+        if (url[2] !== undefined) {
+            ID = url[2].split(/[^0-9a-z_\-]/i);
+            ID = ID[0];
+        }
+        else {
+            ID = url;
+        }
+        return ID;
+    }
+
+    function fetchStaticText(name, setText) {
+        fetch('/api/staticText/readByName/' + name)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                setText(data.text);
+            });
+    }
+
+    useEffect(() => {
+        fetchStaticText('heroTitle', setName);
+        fetchStaticText('heroDesc', setDesc);
+        fetchStaticText('heroLink', setLink);
+        fetchStaticText('heroLinkName', setLinkName);
+        fetchStaticText('heroVideo', setVideo);
+
+    }, [])
+
+    return (
+        <section className="banner_part">
+            <div className="container">
+                <div className="row align-items-center justify-content-center">
+                    <div className="col-lg-7">
+                        <div className="banner_text text-center">
+                            <div className="banner_text_iner">
+                                <h1>{name}</h1>
+                                <p>{desc}</p>
+                                <a href={link} className="btn_2">{linkName}</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-7">
-                    <div class="banner_video">
-                        <div class="banner_video_iner">
-                            <img src="img/banner_video.png" alt=""/>
-                            <div class="extends_video">
-                                <a id="play-video_1" class="video-play-button popup-youtube"
-                                    href="https://www.youtube.com/watch?v=pBFQdxA-apI">
-                                    <span class="fas fa-play"></span>
-                                </a>
-                            </div>
+                    <div className="col-lg-7">
+                        <div className="banner_video">
+                            {
+                                video &&
+                                <div className="banner_video_iner">
+                                    <iframe width="560" height="315" src={`https://www.youtube.com/embed/${YouTubeGetID(video)}`} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                            }
+
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-  );
+        </section>
+    );
 }
 
 export default Banner;

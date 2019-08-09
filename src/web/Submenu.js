@@ -14,15 +14,15 @@ function Submenu({parent}) {
     }, []);
 
     return (
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown"
+        <li className="nav-item dropdown">
+            <a className="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown"
                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {parent.name}
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 {
                     menus.map(menu => (
-                        <a key={menu.id} class="dropdown-item" href="Event.html">{menu.name}</a>
+                        <a key={menu.id} className="dropdown-item" href="Event.html">{menu.name}</a>
                     ))
                 }                                
             </div>

@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
 
-function MenuCategory() {
+function StaticText() {
 
     const [list, setList] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    function loadCategories() {
-        
-        fetch('/api/menuCategory/list')
+    function loadTexts() {        
+        fetch('/api/staticText/list')
             .then(function (response) {
                 return response.json();
             })
@@ -20,51 +18,46 @@ function MenuCategory() {
 
     useEffect(() => {        
         setLoading(true);
-        loadCategories();
+        loadTexts();
     }, []);
 
-    function editCategory(id, name) {        
-        const newName = window.prompt('Ангиллын нэр?', name);
+    function editText(id, text) {        
+        const newText = window.prompt('Бичвэр?', text ? text : '');
 
-        if (newName) {
-
+        if (newText) {
             setLoading(true);
-            fetch('/api/menuCategory/update/' + id, {
+            fetch('/api/staticText/update', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name: newName })
+                body: JSON.stringify({ id: id, text: newText })
             }).then(function (response) {
                 if (response.ok) {                    
-                    loadCategories();                    
+                    loadTexts();                    
                 }                
             })
-
-
         }
-
-
     }
 
     function deleteCategory(id) {
         if (window.confirm("Устгах уу?")) {
             setLoading(true);
-            fetch('/api/menuCategory/delete/' + id, {
+            fetch('/api/staticText/delete/' + id, {
                 method: 'POST'
             }).then(function (response) {
                 if (response.ok) {                    
-                    loadCategories();                    
+                    loadTexts();                    
                 }                
             })
         }
     }
 
     function addNew() {
-        const name = window.prompt('Ангиллын нэр?', '');
+        const name = window.prompt('Нэр?', '');
         if (name) {
             setLoading(true);
-            fetch('/api/menuCategory/save', {
+            fetch('/api/staticText/save', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -72,11 +65,9 @@ function MenuCategory() {
                 body: JSON.stringify({ name: name })
             }).then(function (response) {
                 if (response.ok) {                    
-                    loadCategories();                    
+                    loadTexts();                    
                 }                
             })
-
-
         }
     }
 
@@ -84,7 +75,7 @@ function MenuCategory() {
         <React.Fragment>
             <div className="container" style={{ maxWidth: 600 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1em' }}>
-                    <h1>Цэс</h1>
+                    <h1>Бичвэр</h1>
                     <button type="button" className="btn btn-primary" onClick={addNew}>Шинэ</button>
                 </div>
 
@@ -98,9 +89,10 @@ function MenuCategory() {
                                 {
                                     list.map(item => (
                                         <tr key={item.id}>
-                                            <td><Link to={`/admin/menu/${item.id}`}>{item.name}</Link></td>
+                                            <td>{item.name}</td>
+                                            <td>{item.text}</td>
                                             <td style={{ width: 1, whiteSpace: 'nowrap' }}>
-                                                <button className="btn btn-outline-secondary" onClick={() => editCategory(item.id, item.name)}>Засах</button>
+                                                <button className="btn btn-outline-secondary" onClick={() => editText(item.id, item.text)}>Засах</button>
                                                 {' '}
                                                 <button className="btn btn-outline-danger" onClick={() => deleteCategory(item.id)} >Устгах</button>
                                             </td>
@@ -130,4 +122,4 @@ function MenuCategory() {
     );
 }
 
-export default MenuCategory;
+export default StaticText;

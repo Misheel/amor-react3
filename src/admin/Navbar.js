@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
     return (
-        <nav class="navbar navbar-dark bg-dark fixed-top navbar-expand-lg navbar-light bg-light">            
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <Link class="nav-link" to="/admin/menuCategory">Цэс <span class="sr-only">(current)</span></Link>
+        <nav className="navbar navbar-dark bg-dark fixed-top navbar-expand-lg navbar-light bg-light">            
+            <div className="collapse navbar-collapse" id="navbarText">
+                <ul className="navbar-nav mr-auto">
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/admin/menuCategory">Цэс</Link>
                     </li>                    
-                    <li class="nav-item">
-                        <Link class="nav-link" to="/admin/blog">Блог</Link>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/admin/staticText">Бичвэр</Link>
                     </li>
                 </ul>                
             </div>
