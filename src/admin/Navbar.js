@@ -12,6 +12,9 @@ function Navbar() {
                     <li className="nav-item">
                         <Link className="nav-link" to="/admin/staticText">Бичвэр</Link>
                     </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/admin/post">Нийтлэл</Link>
+                    </li>
                 </ul>                
             </div>
         </nav>
