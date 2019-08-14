@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function CommentForm({postId}) {
+function CommentForm({postId, onSave}) {
 
     const [name, setName] = useState('');
     const [comment, setComment] = useState('');
@@ -22,7 +22,9 @@ function CommentForm({postId}) {
             body: JSON.stringify(form)
         }).then(function (response) {
             if (response.ok) {
-                console.log('success');
+                setName('');
+                setComment('');    
+                onSave();            
             }
         })
     }

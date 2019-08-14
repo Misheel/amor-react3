@@ -16,6 +16,7 @@ function SinglePost({ match }) {
             })
             .then(function (post) {
                 setPost(post);
+                document.title = post.name;
             });
     }, [id])
 
@@ -133,9 +134,7 @@ function SinglePost({ match }) {
                                 </div>
                             </div>
                             
-                            <CommentList postId={id} />
-
-                            <CommentForm postId={id} /> 
+                            <CommentList postId={id} />                            
                             
                         </div>
                         <div class="col-lg-4">
