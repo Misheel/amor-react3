@@ -1,7 +1,11 @@
 import React from 'react';
-
+import CountUp from 'react-countup';
+import { useInView } from 'react-hook-inview'
 
 function About() {
+
+    const [ref, isVisible] = useInView()
+
     return (
         <section className="about_us">
             <div className="container">
@@ -22,22 +26,28 @@ function About() {
                                 market was $446.4 million in 2004 and is estimated to grow to
                                 $654.5 million by 2011. For over 50 years, companies and governments
                             have procured used test and measurement instruments.</p>
-                            <div className="banner_item">
-                                <div className="single_item">
-                                    <h2> <span className="count">50</span>k</h2>
-                                    <h5>Total
+                            <div className="banner_item" ref={ref}>
+                                {
+                                    isVisible &&
+                                    <>
+                                        <div className="single_item">
+                                            <h2> <span className="count"><CountUp start={0} end={50} /></span>k</h2>
+                                            <h5>Total
                                     Volunteer</h5>
-                                </div>
-                                <div className="single_item">
-                                    <h2><span className="count">25</span>k</h2>
-                                    <h5>Successed
+                                        </div>
+                                        <div className="single_item">
+                                            <h2><span className="count"><CountUp start={0} end={25} /></span>k</h2>
+                                            <h5>Successed
                                     Mission</h5>
-                                </div>
-                                <div className="single_item">
-                                    <h2><span className="count">100</span>k</h2>
-                                    <h5>Total
+                                        </div>
+                                        <div className="single_item">
+                                            <h2><span className="count"><CountUp start={0} end={100} /></span>k</h2>
+                                            <h5>Total
                                     Collection</h5>
-                                </div>
+                                        </div>
+                                    </>
+
+                                }
                             </div>
 
                         </div>
@@ -49,9 +59,12 @@ function About() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>            
+
         </section>
     );
 }
 
 export default About;
+
+

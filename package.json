@@ -9,7 +9,10 @@
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.10",
+    "react-countup": "^4.2.1",
     "react-dom": "^16.8.6",
+    "react-google-maps": "^9.4.5",
+    "react-hook-inview": "^4.1.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "react-scroll-to-component": "^1.0.2"
